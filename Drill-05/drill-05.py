@@ -111,7 +111,22 @@ def goto_x_y_6():
         delay(0.02)
         get_events()
 def goto_x_y_7():
-    pass
+    x1, x2 = 316, 510
+    y1, y2 = 225, 92
+    x_change = x2 - x1
+    y_change = y2 - y1
+    m = y_change / x_change
+    frame = 0
+    while (x1 < x2):
+        clear_canvas()
+        grass.draw(400, 30)
+        character.clip_draw(frame * 100, 100, 100, 100, x1, y1)
+        update_canvas()
+        frame = (frame + 1) % 8
+        x1 += 5
+        y1 += 5 * m
+        delay(0.02)
+        get_events()
 def goto_x_y_8():
     pass
 def goto_x_y_9():
@@ -125,7 +140,7 @@ while True:
     #goto_x_y_3()
     #goto_x_y_4()
     #goto_x_y_5()
-    goto_x_y_6()
+    #goto_x_y_6()
     goto_x_y_7()
     goto_x_y_8()
     goto_x_y_9()
