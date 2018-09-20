@@ -190,4 +190,5 @@ while True:
     goto_x_y_9()
     goto_x_y_10()
     goto_10to1()
+
 close_canvas()
