@@ -68,6 +68,16 @@ while True:
     frame = 0
 
     # draw 5 -> 6
+    for i in range(0, 100, 1):
+        t = i / 100
+        x = ((-t ** 3 + 2 * t ** 2 - t) * xPosition[3] + (3 * t ** 3 - 5 * t ** 2 + 2) * xPosition[4] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * xPosition[5] + (t ** 3 - t ** 2) * xPosition[6]) / 2
+        y = ((-t ** 3 + 2 * t ** 2 - t) * yPosition[3] + (3 * t ** 3 - 5 * t ** 2 + 2) * yPosition[4] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * yPosition[5] + (t ** 3 - t ** 2) * yPosition[6]) / 2
+        Draw(x, y)
+
+    frame = 0
+
     # draw 6 -> 7
     # draw 7 -> 8
     # draw 8 -> 9
