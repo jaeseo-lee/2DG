@@ -112,6 +112,16 @@ while True:
     frame = 0
 
     # draw 9 -> 10
+    for i in range(0, 100, 1):
+        t = i / 100
+        x = ((-t ** 3 + 2 * t ** 2 - t) * xPosition[7] + (3 * t ** 3 - 5 * t ** 2 + 2) * xPosition[8] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * xPosition[9] + (t ** 3 - t ** 2) * xPosition[9]) / 2
+        y = ((-t ** 3 + 2 * t ** 2 - t) * yPosition[7] + (3 * t ** 3 - 5 * t ** 2 + 2) * yPosition[8] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * yPosition[9] + (t ** 3 - t ** 2) * yPosition[9]) / 2
+        Draw(x, y)
+
+    frame = 0
+
     # draw 10 -> 1
 
 close_canvas()
