@@ -27,6 +27,12 @@ def Draw(x, y) :
 
 while True:
     # draw 1 -> 2
+    for i in range(0, 50, 1):
+        t = i / 100
+        x = (2 * t ** 2 - 3 * t + 1) * xPosition[0] + (-4 * t ** 2 + 4 * t) * xPosition[1] + (2 * t ** 2 - t) * xPosition[2]
+        y = (2 * t ** 2 - 3 * t + 1) * yPosition[0] + (-4 * t ** 2 + 4 * t) * yPosition[1] + (2 * t ** 2 - t) * yPosition[2]
+        Draw(x, y)
+
     # draw 2 -> 3
     # draw 3 -> 4
     # draw 4 -> 5
