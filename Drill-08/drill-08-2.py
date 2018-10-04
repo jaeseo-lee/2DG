@@ -32,8 +32,19 @@ while True:
         x = (2 * t ** 2 - 3 * t + 1) * xPosition[0] + (-4 * t ** 2 + 4 * t) * xPosition[1] + (2 * t ** 2 - t) * xPosition[2]
         y = (2 * t ** 2 - 3 * t + 1) * yPosition[0] + (-4 * t ** 2 + 4 * t) * yPosition[1] + (2 * t ** 2 - t) * yPosition[2]
         Draw(x, y)
+    frame = 0
 
     # draw 2 -> 3
+    for i in range(0, 100, 1):
+        t = i / 100
+        x = ((-t ** 3 + 2 * t ** 2 - t) * xPosition[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * xPosition[1] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * xPosition[2] + (t ** 3 - t ** 2) * xPosition[3]) / 2
+        y = ((-t ** 3 + 2 * t ** 2 - t) * yPosition[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * yPosition[1] + (
+                    -3 * t ** 3 + 4 * t ** 2 + t) * yPosition[2] + (t ** 3 - t ** 2) * yPosition[3]) / 2
+        Draw(x, y)
+
+    frame = 0
+
     # draw 3 -> 4
     # draw 4 -> 5
     # draw 5 -> 6
