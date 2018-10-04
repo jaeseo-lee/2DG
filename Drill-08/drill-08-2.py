@@ -23,7 +23,7 @@ def Draw(x, y) :
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
     temp = x
-    delay(0.05)
+    delay(0.03)
 
 while True:
     # draw 1 -> 2
@@ -123,5 +123,10 @@ while True:
     frame = 0
 
     # draw 10 -> 1
+    for i in range(50, 100, 1):
+        t = i / 100
+        x = (2 * t ** 2 - 3 * t + 1) * xPosition[8] + (-4 * t ** 2 + 4 * t) * xPosition[9] + (2 * t ** 2 - t) * xPosition[0]
+        y = (2 * t ** 2 - 3 * t + 1) * yPosition[8] + (-4 * t ** 2 + 4 * t) * yPosition[9] + (2 * t ** 2 - t) * yPosition[0]
+        Draw(x, y)
 
 close_canvas()
