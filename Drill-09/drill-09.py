@@ -32,6 +32,18 @@ class Ball:
         elif self.ball_size == 1:
             self.image = load_image('ball41x41.png')
 
+    def update(self):
+        if self.ball_size == 0:
+            if self.y <= 65:
+                self.y = 65
+            else:
+                self.y -= self.speed
+        elif self.ball_size == 1:
+            if self.y <= 75:
+                self.y = 75
+            else:
+                self.y -= self.speed
+
     def draw(self):
         self.image.draw(self.x, self.y)
 
@@ -52,6 +64,9 @@ grass = Grass()
 running = True
 
 while running:
+    handle_events()
+    for boy in team:
+        boy.update()
 
     grass.draw()
     update_canvas()
