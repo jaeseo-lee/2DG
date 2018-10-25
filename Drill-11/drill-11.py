@@ -17,6 +17,9 @@ key_event_table = {
 
 # Boy States
 
+class DashState:
+    
+
 class IdleState:
 
     @staticmethod
