@@ -71,7 +71,8 @@ class IdleState:
             boy.image.clip_draw(int(boy.frame) * 100, 300, 100, 100, boy.x, boy.y)
         else:
             boy.image.clip_draw(int(boy.frame) * 100, 200, 100, 100, boy.x, boy.y)
-
+        boy.font.draw(boy.x - 60, boy.y + 75, '(IDLE_START_TIME = %f)' % boy.start_time, (255, 0, 0))
+        boy.font.draw(boy.x - 60, boy.y + 90, '(Time - IDLE_START_TIME = 10)')
 
 class RunState:
 
@@ -147,20 +148,22 @@ class SleepState:
             boy.image.opacify(1)
             boy.image.clip_composite_draw(int(boy.frame) * 100, 300, 100, 100, 3.141592 / 2, '', boy.x - 25, boy.y - 25, 100, 100)
             boy.image.opacify(boy.ghost_light)
-            if boy.ghoststart == 0:
-                boy.image.clip_composite_draw(int(boy.ghostframe) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25), boy.y - 25 + boy.ghostuptimer, 100, 100)
-            elif boy.ghoststart == 1:
-                boy.image.clip_composite_draw(int(boy.ghostframe) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25) + boy.r * math.cos(ANGLE_PER_SEC * (boy.ghostcircletimer % 1)),boy.y - 25 + boy.ghostuptimer + boy.r * math.sin(ANGLE_PER_SEC * (boy.ghostcircletimer % 1)), 100, 100)
-
-
+            if boy.ghost_start == 0:
+                boy.image.clip_composite_draw(int(boy.ghost_frame) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25), boy.y - 25 + boy.ghost_up_timer, 100, 100)
+            elif boy.ghost_start == 1:
+                boy.image.clip_composite_draw(int(boy.ghost_frame) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25) + boy.r * math.cos(ANGLE_PER_SEC * (boy.ghost_circle_timer % 1)),boy.y - 25 + boy.ghost_up_timer + boy.r * math.sin(ANGLE_PER_SEC * (boy.ghost_circle_timer % 1)), 100, 100)
+            boy.image.opacify(1)
 
         else:
+            boy.image.opacify(1)
             boy.image.clip_composite_draw(int(boy.frame) * 100, 200, 100, 100, -3.141592 / 2, '', boy.x + 25, boy.y - 25, 100, 100)
+            boy.image.opacify(boy.ghost_light)
 
-
-
-
-
+            if boy.ghost_start == 0:
+                boy.image.clip_composite_draw(int(boy.ghost_frame) * 100, 200, 100, 100, -3.141592 / 2, '', (boy.x + 25), boy.y - 25 + boy.ghost_up_timer, 100, 100)
+            elif boy.ghost_start == 1:
+                boy.image.clip_composite_draw(int(boy.ghost_frame) * 100, 200, 100, 100, -3.141592 / 2, '',  (boy.x + 25) + boy.r * math.cos(ANGLE_PER_SEC * (boy.ghost_circle_timer % 1)),  boy.y - 25 + boy.ghost_up_timer + boy.r * math.sin( ANGLE_PER_SEC * (boy.ghost_circle_timer % 1)), 100, 100)
+            boy.image.opacify(1)
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState, SPACE: IdleState},
