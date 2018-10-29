@@ -7,7 +7,7 @@ import game_world
 
 # Boy Run Speed
 # fill expressions correctly
-PIXEL_PER_METER = (10.0 / 0.3) 
+PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
@@ -109,6 +109,13 @@ class SleepState:
     @staticmethod
     def enter(boy, event):
         boy.frame = 0
+        boy.ghost_frame = 0
+        boy.ghost_light = random.randint(0, 100) * 0.01
+        boy.ghost_up_timer = 0
+        boy.ghost_circle_start_timer = 0
+        boy.ghost_circle_timer = 0
+        boy.r = PIXEL_PER_METER * 3
+        boy.ghost_start = 0
 
     @staticmethod
     def exit(boy, event):
