@@ -12,6 +12,7 @@ RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+ANGLE_PER_SEC = 720.0
 
 # Boy Action Speed
 # fill expressions correctly
@@ -47,7 +48,9 @@ class IdleState:
             boy.velocity -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
-        boy.timer = 1000
+        boy.start_time = get_time()
+        boy.timer = get_time()
+        boy.save_timer = boy.timer + 10.0
 
     @staticmethod
     def exit(boy, event):
@@ -58,8 +61,8 @@ class IdleState:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
-        boy.timer -= 1
-        if boy.timer == 0:
+        boy.timer = get_time()
+        if boy.timer >= boy.save_timer:
             boy.add_event(SLEEP_TIMER)
 
     @staticmethod
@@ -124,11 +127,33 @@ class SleepState:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
+        boy.ghost_frame = (boy.ghost_frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
+
+        if (boy.ghost_up_timer <= boy.r and boy.ghost_start == 0):
+            boy.ghost_up_timer += boy.r / 100
+        elif (boy.ghost_up_timer >= boy.r and boy.ghost_start == 0):
+            boy.ghost_circle_start_timer = get_time()
+            boy.ghost_start = 1
+            boy.ghost_up_timer = 0
+
+        if (boy.ghost_circle_start_timer > 0):
+            boy.ghost_circle_timer = boy.ghost_circle_start_timer - get_time()
+        elif (boy.ghost_circle_timer >= 1):
+            boy.ghost_circle_start_timer = get_time()
 
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
+            boy.image.opacify(1)
             boy.image.clip_composite_draw(int(boy.frame) * 100, 300, 100, 100, 3.141592 / 2, '', boy.x - 25, boy.y - 25, 100, 100)
+            boy.image.opacify(boy.ghost_light)
+            if boy.ghoststart == 0:
+                boy.image.clip_composite_draw(int(boy.ghostframe) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25), boy.y - 25 + boy.ghostuptimer, 100, 100)
+            elif boy.ghoststart == 1:
+                boy.image.clip_composite_draw(int(boy.ghostframe) * 100, 300, 100, 100, 3.141592 / 2, '', (boy.x - 25) + boy.r * math.cos(ANGLE_PER_SEC * (boy.ghostcircletimer % 1)),boy.y - 25 + boy.ghostuptimer + boy.r * math.sin(ANGLE_PER_SEC * (boy.ghostcircletimer % 1)), 100, 100)
+
+
+
         else:
             boy.image.clip_composite_draw(int(boy.frame) * 100, 200, 100, 100, -3.141592 / 2, '', boy.x + 25, boy.y - 25, 100, 100)
 
