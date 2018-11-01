@@ -4,16 +4,16 @@ import game_world
 class Ball:
     image = None
 
-    def __init__(self, x = 400, y = 300, velocity = 1):
+    def __init__(self, x = 400, y = 300, velocity = 10):
         if Ball.image == None:
-            Ball.image = load_image('ball21x21.png')
+            Ball.image = load_image('Gun1.png')
         self.x, self.y, self.velocity = x, y, velocity
 
     def draw(self):
         self.image.draw(self.x, self.y)
 
     def update(self):
-        self.x += self.velocity
+        self.y += self.velocity
 
-        if self.x < 25 or self.x > 1600 - 25:
+        if self.y > 800 - 20:
             game_world.remove_object(self)
