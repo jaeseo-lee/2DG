@@ -4,17 +4,17 @@ from ball import Ball
 import game_world
 
 # Boy Event
-UP, DOWN, LEFT, RIGHT, RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE = range(10)
+UP_DOWN, DOWN_DOWN, RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, UP_UP, DOWN_UP, SPACE = range(9)
 
 key_event_table = {
-    (SDL_KEYUP) : UP,
-    (SDL_KEYDOWN) : DOWN,
-    (SDLK_LEFT) : LEFT,
-    (SDLK_RIGHT) : RIGHT,
-    (SDL_KEYUP, SDLK_RIGHT) : RIGHT_UP,
-    (SDL_KEYUP, SDLK_LEFT) : LEFT_UP,
-    (SDL_KEYDOWN, SDLK_RIGHT) : RIGHT_DOWN,
-    (SDL_KEYDOWN, SDLK_LEFT) : LEFT_DOWN,
+    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
+    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN,
+    (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
+    (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
+    (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
+    (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
+    (SDL_KEYUP, SDLK_UP): UP_UP,
+    (SDL_KEYUP, SDLK_DOWN): LEFT_DOWN,
     (SDL_KEYDOWN, SDLK_SPACE): SPACE
 }
 # Boy States
@@ -41,8 +41,8 @@ class IdleState:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
-        if boy.timer == 0:
-            boy.add_event(SLEEP_TIMER)
+        #if boy.timer == 0:
+            #boy.add_event(SLEEP_TIMER)
 
     @staticmethod
     def draw(boy):
@@ -105,10 +105,7 @@ class Boy:
 
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir*3)
-        game_world.add_object(ball,1)
-        pass
-
-
+        game_world.add_object(ball, 1)
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -123,7 +120,6 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
-
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
