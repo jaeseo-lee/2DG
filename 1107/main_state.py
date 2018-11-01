@@ -5,22 +5,22 @@ import os
 from pico2d import *
 import game_framework
 import game_world
-
+from enemy import Enemy
 from player import Player
 from grass import Grass
-
 name = "MainState"
 
 boy = None
 grass = None
-
+enemy = None
 def enter():
     global boy, grass
     boy = Player()
     grass = Grass()
+    enemy = Enemy()
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
-
+    game_world.add_object(enemy, 1)
 
 def exit():
     game_world.clear()

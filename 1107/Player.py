@@ -66,9 +66,7 @@ class IdleState:
         if event == SPACE:
             boy.fire_ball()
 
-    @staticmethod
-    def enemy(self):
-        enemy = Enemy(self.x, self.y)
+
 
     @staticmethod
     def do(boy):
@@ -109,9 +107,7 @@ class RunState:
         if event == SPACE:
             boy.fire_ball()
 
-    @staticmethod
-    def enemy(self):
-        enemy = Enemy(self.x, self.y)
+
 
     @staticmethod
     def do(boy):
@@ -149,17 +145,12 @@ class Player:
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
 
-    def draw(self) :
+    def draw(self):
         self.cur_state.draw(self)
 
     def fire_ball(self):
         ball = Ball(self.x, self.y)
         game_world.add_object(ball, 1)
-
-    def enemy_appear(self):
-        enemy = Enemy(self.x, self.y)
-        game_world.add_object(enemy, 1)
-
 
     def add_event(self, event):
         self.event_que.insert(0, event)

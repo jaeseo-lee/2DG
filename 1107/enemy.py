@@ -5,9 +5,9 @@ import random
 class Enemy:
     image = None
 
-    def __init__(self, x = 400, y = 600, velocity = 2):
+    def __init__(self, x = random.randint(50, 550), y = 800, velocity = 1):
         if Enemy.image == None:
-            Enemy.image = load_image('Enemy1.png')
+            Enemy.image = load_image('enemy1.png')
         self.x, self.y, self.velocity = x, y, velocity
 
     def draw(self):
@@ -16,5 +16,5 @@ class Enemy:
     def update(self):
         self.y -= self.velocity
 
-        if self.y > 20:
+        if self.y < 20:
             game_world.remove_object(self)
