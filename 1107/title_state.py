@@ -8,7 +8,7 @@ image = None
 
 def enter():
     global image
-    image = load_image('title.png')
+    image = load_image('StartBackground.png')
     pass
 
 
@@ -34,7 +34,7 @@ def handle_events():
 
 def draw():
     clear_canvas()
-    image.draw(400,300)
+    image.draw(300, 400)
     update_canvas()
     pass
 

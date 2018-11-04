@@ -66,8 +66,6 @@ class IdleState:
         if event == SPACE:
             boy.fire_ball()
 
-
-
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
@@ -107,8 +105,6 @@ class RunState:
         if event == SPACE:
             boy.fire_ball()
 
-
-
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
@@ -122,11 +118,11 @@ class RunState:
        # if boy.dir_x == 1:
             boy.image.draw(boy.x, boy.y)
         #else:
-         #   boy.image.draw(boy.x, boy.y)
+            #boy.image.draw(boy.x, boy.y)
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-                UP_DOWN: RunState, DOWN_DOWN: RunState, UP_UP: RunState, DOWN_UP: RunState ,SPACE: IdleState},
+                UP_DOWN: RunState, DOWN_DOWN: RunState, UP_UP: RunState, DOWN_UP: RunState, SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,
                UP_DOWN: IdleState, DOWN_DOWN: IdleState, UP_UP: IdleState, DOWN_UP: IdleState, SPACE: RunState},
 }
@@ -135,10 +131,13 @@ class Player:
     def __init__(self) :
         self.image = load_image("player1.png")
         self.x, self.y = 300, 50
+        self.font = load_font('ENCR10B.TTF', 16)
         self.frame = 0
         self.hp = 1
         self.velocityRL = 0
         self.velocityUD = 0
+        self.time_x = 470
+        self.time_y = 780
         self.dir_x = 1
         self.dir_y = 1
         self.event_que = []
@@ -147,6 +146,7 @@ class Player:
 
     def draw(self):
         self.cur_state.draw(self)
+        self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
 
     def fire_ball(self):
         ball = Ball(self.x, self.y)

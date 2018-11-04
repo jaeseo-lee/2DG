@@ -18,3 +18,4 @@ class Enemy:
 
         if self.y < 20:
             game_world.remove_object(self)
+
