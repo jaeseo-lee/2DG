@@ -14,13 +14,15 @@ boy = None
 grass = None
 enemy = None
 def enter():
-    global boy, background, enemy, bullet
+    global boy, background, enemys
     boy = Player()
     background = Background()
-    enemy = Enemy()
+    enemys = [Enemy() for i in range(30)]
+    game_world.add_objects(enemys, 1)
+
     game_world.add_object(background, 0)
     game_world.add_object(boy, 1)
-    game_world.add_object(enemy, 1)
+
 
 def exit():
     game_world.clear()

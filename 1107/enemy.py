@@ -5,11 +5,13 @@ import random
 class Enemy:
     image = None
 
-    def __init__(self, x = random.randint(50, 550), y = 800, velocity = 1):
+    def __init__(self):
+        velocity = 1
         if Enemy.image == None:
             Enemy.image = load_image('enemy1.png')
-        self.x, self.y, self.velocity = x, y, velocity
-        self.hp = 100
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 3000), velocity
+        self.hp = 100 ## 체력
+        self.score = 80 ## 점수
 
     def draw(self):
         self.image.draw(self.x, self.y)
