@@ -14,7 +14,7 @@ class Bullet:
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x - 12, self.y - 10, self.x + 12, self.y + 10
+        return self.x - 13, self.y - 13, self.x + 13, self.y + 13
 
     def update(self):
         self.y += self.velocity

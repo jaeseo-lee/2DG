@@ -17,10 +17,10 @@ class Enemy:
 
 
     def get_bb1(self):
-        return self.x - 40, self.y - 25, self.x + 40, self.y + 45
+        return self.x - 40, self.y , self.x + 40, self.y + 45
 
     def get_bb2(self):
-        return self.x - 20, self.y - 25, self.x + 20, self.y + 25
+        return self.x - 20, self.y - 40, self.x + 20, self.y
 
     def update(self):
         self.y -= self.velocity
