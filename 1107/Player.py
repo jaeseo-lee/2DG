@@ -1,6 +1,6 @@
 import game_framework
 from pico2d import *
-from ball import Ball
+from bullet import Bullet
 from enemy import Enemy
 import game_world
 import random
@@ -147,10 +147,11 @@ class Player:
     def draw(self):
         self.cur_state.draw(self)
         self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
+        draw_rectangle(*self.get_bb())
 
     def fire_ball(self):
-        ball = Ball(self.x, self.y)
-        game_world.add_object(ball, 1)
+        bullet = Bullet(self.x, self.y)
+        game_world.add_object(bullet, 1)
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -167,3 +168,6 @@ class Player:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
+
+    def get_bb(self):
+        return self.x - 16, self.y - 30, self.x + 16, self.y + 30

@@ -12,6 +12,15 @@ class Enemy:
 
     def draw(self):
         self.image.draw(self.x, self.y)
+        draw_rectangle(*self.get_bb1())
+        draw_rectangle(*self.get_bb2())
+
+
+    def get_bb1(self):
+        return self.x - 40, self.y - 25, self.x + 40, self.y + 45
+
+    def get_bb2(self):
+        return self.x - 20, self.y - 25, self.x + 20, self.y + 25
 
     def update(self):
         self.y -= self.velocity
