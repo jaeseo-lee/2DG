@@ -7,18 +7,18 @@ import game_framework
 import game_world
 from enemy import Enemy
 from player import Player
-from grass import Grass
+from background import Background
 name = "MainState"
 
 boy = None
 grass = None
 enemy = None
 def enter():
-    global boy, grass, enemy, bullet
+    global boy, background, enemy, bullet
     boy = Player()
-    grass = Grass()
+    background = Background()
     enemy = Enemy()
-    game_world.add_object(grass, 0)
+    game_world.add_object(background, 0)
     game_world.add_object(boy, 1)
     game_world.add_object(enemy, 1)
 

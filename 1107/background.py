@@ -1,6 +1,6 @@
 from pico2d import *
 
-class Grass:
+class Background:
     def __init__(self):
         self.image = load_image('Maingamebackground.png')
 

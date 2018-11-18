@@ -5,7 +5,6 @@ import random
 class Enemy:
     image = None
 
-
     def __init__(self, x = random.randint(50, 550), y = 800, velocity = 1):
         if Enemy.image == None:
             Enemy.image = load_image('enemy1.png')

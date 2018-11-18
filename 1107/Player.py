@@ -37,88 +37,88 @@ key_event_table = {
 class IdleState:
 
     @staticmethod
-    def enter(boy, event):
+    def enter(player, event):
         if event == RIGHT_DOWN:
-            boy.velocityRL += RUN_SPEED_PPS
+            player.velocityRL += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            boy.velocityRL -= RUN_SPEED_PPS
+            player.velocityRL -= RUN_SPEED_PPS
         elif event == RIGHT_UP:
-            boy.velocityRL -= RUN_SPEED_PPS
+            player.velocityRL -= RUN_SPEED_PPS
         elif event == LEFT_UP:
-            boy.velocityRL += RUN_SPEED_PPS
+            player.velocityRL += RUN_SPEED_PPS
         elif event == UP_DOWN:
-            boy.velocityUD += RUN_SPEED_PPS
+            player.velocityUD += RUN_SPEED_PPS
         elif event == UP_UP:
-            boy.velocityUD -= RUN_SPEED_PPS
+            player.velocityUD -= RUN_SPEED_PPS
         elif event == DOWN_UP:
-            boy.velocityUD += RUN_SPEED_PPS
+            player.velocityUD += RUN_SPEED_PPS
         elif event == DOWN_DOWN:
-            boy.velocityUD -= RUN_SPEED_PPS
-        boy.dir_x = clamp(-1, boy.velocityRL, 1)
-        boy.dir_y = clamp(-1, boy.velocityUD, 1)
+            player.velocityUD -= RUN_SPEED_PPS
+        player.dir_x = clamp(-1, player.velocityRL, 1)
+        player.dir_y = clamp(-1, player.velocityUD, 1)
 
-        boy.timer = get_time()
-        boy.cur_time = get_time()
-        boy.sleep_timer = boy.timer + 10.0
+        player.timer = get_time()
+        player.cur_time = get_time()
+        player.sleep_timer = player.timer + 10.0
 
     @staticmethod
-    def exit(boy, event):
+    def exit(player, event):
         if event == SPACE:
-            boy.fire_ball()
+            player.fire_ball()
 
     @staticmethod
-    def do(boy):
-        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
-        boy.timer = get_time()
+    def do(player):
+        player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
+        player.timer = get_time()
 
     @staticmethod
-    def draw(boy):
-        boy.image.draw(boy.x, boy.y)
+    def draw(player):
+        player.image.draw(player.x, player.y)
 
 
 class RunState:
 
     @staticmethod
-    def enter(boy, event):
+    def enter(player, event):
         if event == RIGHT_DOWN:
-            boy.velocityRL += RUN_SPEED_PPS
+            player.velocityRL += RUN_SPEED_PPS
         elif event == LEFT_DOWN:
-            boy.velocityRL -= RUN_SPEED_PPS
+            player.velocityRL -= RUN_SPEED_PPS
         elif event == RIGHT_UP:
-            boy.velocityRL -= RUN_SPEED_PPS
+            player.velocityRL -= RUN_SPEED_PPS
         elif event == LEFT_UP:
-            boy.velocityRL += RUN_SPEED_PPS
+            player.velocityRL += RUN_SPEED_PPS
         elif event == UP_DOWN:
-            boy.velocityUD += RUN_SPEED_PPS
+            player.velocityUD += RUN_SPEED_PPS
         elif event == UP_UP:
-            boy.velocityUD -= RUN_SPEED_PPS
+            player.velocityUD -= RUN_SPEED_PPS
         elif event == DOWN_UP:
-            boy.velocityUD += RUN_SPEED_PPS
+            player.velocityUD += RUN_SPEED_PPS
         elif event == DOWN_DOWN:
-            boy.velocityUD -= RUN_SPEED_PPS
-        boy.dir_x = clamp(-1, boy.velocityRL, 1)
-        boy.dir_y = clamp(-1, boy.velocityUD, 1)
+            player.velocityUD -= RUN_SPEED_PPS
+        player.dir_x = clamp(-1, player.velocityRL, 1)
+        player.dir_y = clamp(-1, player.velocityUD, 1)
 
 
     @staticmethod
-    def exit(boy, event):
+    def exit(player, event):
         if event == SPACE:
-            boy.fire_ball()
+            player.fire_ball()
 
     @staticmethod
-    def do(boy):
-        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
-        boy.x += boy.velocityRL * game_framework.frame_time
-        boy.y += boy.velocityUD * game_framework.frame_time
-        boy.x = clamp(25, boy.x, 600 - 25)
-        boy.y = clamp(25, boy.y, 800 - 25)
+    def do(player):
+        player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
+        player.x += player.velocityRL * game_framework.frame_time
+        player.y += player.velocityUD * game_framework.frame_time
+        player.x = clamp(25, player.x, 600 - 25)
+        player.y = clamp(25, player.y, 800 - 25)
 
     @staticmethod
-    def draw(boy):
-       # if boy.dir_x == 1:
-            boy.image.draw(boy.x, boy.y)
+    def draw(player):
+       # if player.dir_x == 1:
+       player.image.draw(player.x, player.y)
         #else:
-            #boy.image.draw(boy.x, boy.y)
+            #player.image.draw(player.x, player.y)
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
