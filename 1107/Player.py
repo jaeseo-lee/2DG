@@ -5,7 +5,7 @@ from enemy import Enemy
 import game_world
 import random
 import math
-
+import main_state
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -146,7 +146,9 @@ class Player:
 
     def draw(self):
         self.cur_state.draw(self)
+        self.font.draw(470, 760, 'SCORE: ', (255, 255, 255))
         self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
+
         draw_rectangle(*self.get_bb())
 
     def fire_ball(self):

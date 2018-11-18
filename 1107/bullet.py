@@ -27,6 +27,7 @@ class Bullet:
                 main_state.enemy.hp -= self.damage
             if (main_state.enemy.hp == 0):
                 game_world.remove_object(main_state.enemy)
+                main_state.score += 80
                 main_state.enemy.__init__()
 
         if self.y > 800 - 20:

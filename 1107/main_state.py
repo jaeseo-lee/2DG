@@ -9,17 +9,17 @@ from enemy import Enemy
 from player import Player
 from background import Background
 name = "MainState"
-
+score = None
 boy = None
 grass = None
 enemy = None
 def enter():
-    global boy, background, enemys
+    global boy, background, enemys, score
+    score = 0
     boy = Player()
     background = Background()
     enemys = [Enemy() for i in range(30)]
     game_world.add_objects(enemys, 1)
-
     game_world.add_object(background, 0)
     game_world.add_object(boy, 1)
 
