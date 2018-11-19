@@ -146,7 +146,7 @@ class Player:
 
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(470, 760, 'SCORE: ', (255, 255, 255))
+        self.font.draw(470, 760, 'SCORE: %i' % main_state.score,(255, 255, 255))
         self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
 
         draw_rectangle(*self.get_bb())
