@@ -6,6 +6,7 @@ from pico2d import *
 import game_framework
 import game_world
 from enemy import Enemy
+from enemy2 import Enemy2
 from player import Player
 from background import Background
 name = "MainState"
@@ -13,13 +14,16 @@ score = None
 boy = None
 grass = None
 enemy = None
+enemy2 = None
 def enter():
-    global boy, background, enemys, score
+    global boy, background, enemys, score, enemys2
     score = 0
     boy = Player()
     background = Background()
     enemys = [Enemy() for i in range(30)]
+    enemys2 = [Enemy2() for i in range(10)]
     game_world.add_objects(enemys, 1)
+    game_world.add_objects(enemys2, 1)
     game_world.add_object(background, 0)
     game_world.add_object(boy, 1)
 

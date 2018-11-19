@@ -1,7 +1,6 @@
 import game_framework
 from pico2d import *
 from bullet import Bullet
-from enemy import Enemy
 import game_world
 import random
 import math
