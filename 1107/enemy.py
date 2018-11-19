@@ -11,7 +11,7 @@ class Enemy:
             Enemy.image = load_image('Enemy1.png')
         if Enemy.enemy_bullet == None:
             Enemy.enemy_bullet = load_image('EnemyGun1.png')
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 3000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 5000), velocity
         self.hp = 100 # 체력
          # 점수
 
