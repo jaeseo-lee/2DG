@@ -21,16 +21,17 @@ class Bullet:
     def update(self):
         self.y += self.velocity
 
-        for main_state.enemy in main_state.enemys:
+        for main_state.enemy in main_state.enemies:
             if main_state.collide(self, main_state.enemy):
                 game_world.remove_object(self)
                 main_state.enemy.hp -= self.damage
             if main_state.enemy.hp == 0:
+
                 game_world.remove_object(main_state.enemy)
                 main_state.score += 80
                 main_state.enemy.__init__()
 
-        for main_state.enemy2 in main_state.enemys2:
+        for main_state.enemy2 in main_state.enemies2:
             if main_state.collide(self, main_state.enemy2):
                 game_world.remove_object(self)
                 main_state.enemy2.hp -= self.damage

@@ -9,31 +9,33 @@ from enemy import Enemy
 from enemy2 import Enemy2
 from player import Player
 from background import Background
+from enemy_bullet import Enemy_Bullet
+
 name = "MainState"
 score = None
-boy = None
+player = None
 grass = None
 enemy = None
 enemy2 = None
-def enter():
-    global boy, background, enemys, score, enemys2
-    score = 0
-    boy = Player()
-    background = Background()
-    enemys = [Enemy() for i in range(30)]
-    enemys2 = [Enemy2() for i in range(10)]
-    game_world.add_objects(enemys, 1)
-    game_world.add_objects(enemys2, 1)
-    game_world.add_object(background, 0)
-    game_world.add_object(boy, 1)
+enemy_billet = None
 
+def enter():
+    global player, background, enemies, score, enemies2
+    score = 0
+    player = Player()
+    background = Background()
+    enemies = [Enemy() for i in range(30)]
+    enemies2 = [Enemy2() for i in range(10)]
+    game_world.add_objects(enemies, 1)
+    game_world.add_objects(enemies2, 1)
+    game_world.add_object(background, 0)
+    game_world.add_object(player, 1)
 
 def exit():
     game_world.clear()
 
 def pause():
     pass
-
 
 def resume():
     pass
@@ -57,7 +59,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.quit()
         else:
-            boy.handle_event(event)
+            player.handle_event(event)
 
 
 def update():

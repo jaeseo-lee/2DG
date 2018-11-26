@@ -81,17 +81,18 @@ class RunState:
     def enter(player, event):
         if event == RIGHT_DOWN:
             player.velocityRL += RUN_SPEED_PPS
-        elif event == LEFT_DOWN:
-            player.velocityRL -= RUN_SPEED_PPS
         elif event == RIGHT_UP:
+            player.velocityRL -= RUN_SPEED_PPS
+        if event == LEFT_DOWN:
             player.velocityRL -= RUN_SPEED_PPS
         elif event == LEFT_UP:
             player.velocityRL += RUN_SPEED_PPS
-        elif event == UP_DOWN:
+
+        if event == UP_DOWN:
             player.velocityUD += RUN_SPEED_PPS
         elif event == UP_UP:
             player.velocityUD -= RUN_SPEED_PPS
-        elif event == DOWN_UP:
+        if event == DOWN_UP:
             player.velocityUD += RUN_SPEED_PPS
         elif event == DOWN_DOWN:
             player.velocityUD -= RUN_SPEED_PPS
@@ -147,7 +148,6 @@ class Player:
         self.cur_state.draw(self)
         self.font.draw(470, 760, 'SCORE: %i' % main_state.score,(255, 255, 255))
         self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
-
         draw_rectangle(*self.get_bb())
 
     def fire_ball(self):
