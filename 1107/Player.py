@@ -132,6 +132,7 @@ class Player:
         self.font = load_font('ENCR10B.TTF', 16)
         self.frame = 0
         self.hp = 1
+        self.life = 3
         self.velocityRL = 0
         self.velocityUD = 0
         self.time_x = 470

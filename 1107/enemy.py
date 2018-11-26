@@ -2,9 +2,10 @@ from pico2d import *
 import game_world
 import random
 import math
+import game_framework
 from enemy_bullet import Enemy_Bullet
 
-PIXEL_PER_METER = (10.0 / 0.3)
+PIXEL_PER_METER = (10.0 / 4)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
@@ -23,7 +24,7 @@ class IdleState:
 
     @staticmethod
     def enter(enemy, event):
-
+        enemy.velocity -= RUN_SPEED_PPS
 
         pass
     @staticmethod
@@ -31,9 +32,9 @@ class IdleState:
         pass
     @staticmethod
     def do(enemy):
-        enemy.y -= enemy.velocity
-        enemy.timer -= 2
-        if enemy.timer < 0:
+        enemy.y += enemy.velocity * game_framework.frame_time
+        enemy.timer -= 1
+        if enemy.timer < 0 and enemy.y <= 840:
             Enemy.launch(enemy)
             enemy.timer = 500
         pass
@@ -88,7 +89,7 @@ class Enemy:
         if Enemy.image == None:
             Enemy.image = load_image('Enemy1.png')
         self.timer = 500
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 3000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1000, 6000), velocity
         self.velocityUD = 0
         self.hp = 100
         self.event_que = []
@@ -101,11 +102,8 @@ class Enemy:
         draw_rectangle(*self.get_bb())
 
     def launch(self):
-        enemy_bullet1 = Enemy_Bullet(self.x - 12, self.y-45)
-        enemy_bullet2 = Enemy_Bullet(self.x + 12, self.y-45)
+        enemy_bullet1 = Enemy_Bullet(self.x, self.y-45)
         game_world.add_object(enemy_bullet1, 1)
-        game_world.add_object(enemy_bullet2, 1)
-
 
     def get_bb(self):
         return self.x - 20, self.y - 40, self.x + 20, self.y + 40
@@ -120,9 +118,6 @@ class Enemy:
             self.cur_state.exit(self, event)
             self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
-
-        #if self.y <= 820:
-            #self.launch()
 
         if self.y < 20:
             game_world.remove_object(self)

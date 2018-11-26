@@ -25,8 +25,8 @@ class Bullet:
             if main_state.collide(self, main_state.enemy):
                 game_world.remove_object(self)
                 main_state.enemy.hp -= self.damage
-            if main_state.enemy.hp == 0:
 
+            if main_state.enemy.hp == 0:
                 game_world.remove_object(main_state.enemy)
                 main_state.score += 80
                 main_state.enemy.__init__()
