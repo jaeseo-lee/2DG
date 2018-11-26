@@ -36,7 +36,7 @@ class IdleState:
         enemy.timer -= 1
         if enemy.timer < 0 and enemy.y <= 840:
             Enemy.launch(enemy)
-            enemy.timer = 500
+            enemy.timer = 300
         pass
     @staticmethod
     def draw(enemy):

@@ -7,10 +7,10 @@ class Enemy_Bullet2:
     image = None
 
     def __init__(self, x=300, y=300):
-        velocity = 1.3
+        velocity = 1.5
         damage = 1
-        if Enemy_Bullet.image == None:
-            Enemy_Bullet.image = load_image('EnemyGun5.png')
+        if Enemy_Bullet2.image == None:
+            Enemy_Bullet2.image = load_image('EnemyGun2.png')
         self.x, self.y, self.velocity = x, y, velocity
 
 
@@ -19,7 +19,7 @@ class Enemy_Bullet2:
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x - 10, self.y - 10, self.x + 10, self.y + 10
+        return self.x - 12, self.y - 10, self.x + 12, self.y + 10
 
     def update(self):
         self.y -= self.velocity
