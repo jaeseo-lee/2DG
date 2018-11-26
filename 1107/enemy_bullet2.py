@@ -32,7 +32,5 @@ class Enemy_Bullet2:
             #game_world.remove_object(main_state.player)
             #main_state.player.life -= 1
 
-
-
         if self.y < 20:
             game_world.remove_object(self)

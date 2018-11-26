@@ -7,7 +7,7 @@ class Enemy_Bullet:
     image = None
 
     def __init__(self, x=300, y=300):
-        velocity = 1.4
+        velocity = 1.8
         damage = 1
         if Enemy_Bullet.image == None:
             Enemy_Bullet.image = load_image('EnemyGun5.png')
