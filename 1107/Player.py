@@ -32,7 +32,6 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_SPACE): SPACE
 }
 
-
 class IdleState:
 
     @staticmethod
@@ -99,7 +98,6 @@ class RunState:
         player.dir_x = clamp(-1, player.velocityRL, 1)
         player.dir_y = clamp(-1, player.velocityUD, 1)
 
-
     @staticmethod
     def exit(player, event):
         if event == SPACE:
@@ -128,7 +126,7 @@ next_state_table = {
 }
 
 class Player:
-    def __init__(self) :
+    def __init__(self):
         self.image = load_image("player1.png")
         self.x, self.y = 300, 50
         self.font = load_font('ENCR10B.TTF', 16)
@@ -157,7 +155,7 @@ class Player:
     def add_event(self, event):
         self.event_que.insert(0, event)
 
-    def update(self) :
+    def update(self):
         self.cur_state.do(self)
         if len(self.event_que) > 0:
             event = self.event_que.pop()

@@ -23,40 +23,106 @@ class IdleState:
 
     @staticmethod
     def enter(enemy, event):
+
+
         pass
     @staticmethod
     def exit(enemy, event):
         pass
     @staticmethod
     def do(enemy):
+        enemy.y -= enemy.velocity
+        enemy.timer -= 2
+        if enemy.timer < 0:
+            Enemy.launch(enemy)
+            enemy.timer = 500
         pass
     @staticmethod
     def draw(enemy):
         pass
+
+class MoveState:
+
+    @staticmethod
+    def enter(enemy, event):
+
+        pass
+    @staticmethod
+    def exit(enemy, event):
+        pass
+    @staticmethod
+    def do(enemy):
+
+        pass
+    @staticmethod
+    def draw(enemy):
+
+        pass
+
+class AttackState:
+
+    @staticmethod
+    def enter(enemy, event):
+
+        pass
+    @staticmethod
+    def exit(enemy, event):
+        pass
+    @staticmethod
+    def do(enemy):
+
+        pass
+    @staticmethod
+    def draw(enemy):
+
+        pass
+next_state_table = {
+    IdleState: {},
+    MoveState: {},
+    AttackState: {}
+}
 class Enemy:
     image = None
     def __init__(self):
-        velocity = 0.8
+        velocity = 0.7
         if Enemy.image == None:
             Enemy.image = load_image('Enemy1.png')
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 5000), velocity
+        self.timer = 500
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(850, 3000), velocity
+        self.velocityUD = 0
         self.hp = 100
-
+        self.event_que = []
+        self.cur_state = IdleState
+        self.cur_state.enter(self, None)
 
     def draw(self):
+        self.cur_state.draw(self)
         self.image.draw(self.x, self.y)
         draw_rectangle(*self.get_bb())
 
     def launch(self):
-        enemy_bullet = Enemy_Bullet(self.x,self.y)
-        game_world.add_object(enemy_bullet, 1)
+        enemy_bullet1 = Enemy_Bullet(self.x - 12, self.y-45)
+        enemy_bullet2 = Enemy_Bullet(self.x + 12, self.y-45)
+        game_world.add_object(enemy_bullet1, 1)
+        game_world.add_object(enemy_bullet2, 1)
+
 
     def get_bb(self):
         return self.x - 20, self.y - 40, self.x + 20, self.y + 40
 
+    def add_event(self, event):
+        self.event_que.insert(0, event)
+
     def update(self):
-        self.y -= self.velocity
-        self.launch()
+        self.cur_state.do(self)
+        if len(self.event_que) > 0:
+            event = self.event_que.pop()
+            self.cur_state.exit(self, event)
+            self.cur_state = next_state_table[self.cur_state][event]
+            self.cur_state.enter(self, event)
+
+        #if self.y <= 820:
+            #self.launch()
 
         if self.y < 20:
             game_world.remove_object(self)
