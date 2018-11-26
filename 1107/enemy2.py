@@ -106,7 +106,11 @@ class Enemy2:
 
     def launch(self):
         enemy_bullet2 = Enemy_Bullet2(self.x, self.y-45)
+        enemy_bullet3 = Enemy_Bullet2(self.x - 25, self.y - 45)
+        enemy_bullet4 = Enemy_Bullet2(self.x + 25, self.y - 45)
         game_world.add_object(enemy_bullet2, 1)
+        game_world.add_object(enemy_bullet3, 1)
+        game_world.add_object(enemy_bullet4, 1)
 
     def get_bb(self):
         return self.x - 40, self.y - 40 , self.x + 40, self.y + 40
