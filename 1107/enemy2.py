@@ -38,7 +38,7 @@ class IdleState:
         enemy2.timer -= 1
         if enemy2.timer < 0 and enemy2.y <= 840:
             Enemy2.launch(enemy2)
-            enemy2.timer = 500
+            enemy2.timer = 400
         pass
     @staticmethod
     def draw(enemy2):
@@ -92,7 +92,7 @@ class Enemy2:
         velocity = 0.5
         if Enemy2.image == None:
             Enemy2.image = load_image('Enemy2.png')
-        self.timer = 500
+        self.timer = 400
         self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1500, 5000), velocity
         self.velocityUD = 0
         self.hp = 200# 체력
