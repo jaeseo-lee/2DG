@@ -68,6 +68,10 @@ def handle_events():
                 game_framework.quit()
         else:
             player.handle_event(event)
+    if boss.hp <= 0:
+        game_framework.
+
+
 
 
 def update():
