@@ -3,10 +3,11 @@ import game_world
 import random
 import math
 import game_framework
-from enemy_bullet2 import Enemy_Bullet2
-from enemy_bullet2 import Enemy_Bullet3
-from enemy_bullet2 import Enemy_Bullet4
-
+from boss_bullet import Boss_Bullet2
+from boss_bullet import Boss_Bullet3
+from boss_bullet import Boss_Bullet4
+from boss_bullet import Boss_Bullet5
+from boss_bullet import Boss_Bullet6
 PIXEL_PER_METER = (10.0 / 4)
 RUN_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -34,10 +35,10 @@ class IdleState:
         pass
     @staticmethod
     def do(boss):
-        if boss.y > 500:
+        if boss.y > 600:
             boss.y += boss.velocity * game_framework.frame_time
 
-        boss.timer -= 1
+        boss.timer -= 2
         if boss.timer < 0 and boss.y <= 840:
             Boss.launch(boss)
             boss.timer = 400
@@ -95,9 +96,9 @@ class Boss:
         if Boss.image == None:
             Boss.image = load_image('MiddleBoss.png')
         self.timer = 400
-        self.x, self.y, self.velocity = 300, 500, velocity
+        self.x, self.y, self.velocity = 300, 8000, velocity
         self.velocityUD = 0
-        self.hp = 5000 #체력
+        self.hp = 4000 #체력
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -109,12 +110,17 @@ class Boss:
         draw_rectangle(*self.get_bb())
 
     def launch(self):
-        enemy_bullet2 = Enemy_Bullet2(self.x, self.y-45)
-        enemy_bullet4 = Enemy_Bullet4(self.x - 25, self.y - 45)
-        enemy_bullet3 = Enemy_Bullet3(self.x + 25, self.y - 45)
-        game_world.add_object(enemy_bullet2, 1)
-        game_world.add_object(enemy_bullet4, 1)
-        game_world.add_object(enemy_bullet3, 1)
+        boss_bullet2 = Boss_Bullet2(self.x, self.y-45)
+        boss_bullet3 = Boss_Bullet3(self.x + 15, self.y - 45)
+        boss_bullet4 = Boss_Bullet4(self.x - 15, self.y - 45)
+        boss_bullet5 = Boss_Bullet5(self.x + 30, self.y - 45)
+        boss_bullet6 = Boss_Bullet6(self.x - 30, self.y - 45)
+        game_world.add_object(boss_bullet2, 1)
+        game_world.add_object(boss_bullet3, 1)
+        game_world.add_object(boss_bullet4, 1)
+        game_world.add_object(boss_bullet5, 1)
+        game_world.add_object(boss_bullet6, 1)
+
 
     def get_bb(self):
         return self.x - 50, self.y - 40 , self.x + 50, self.y + 40

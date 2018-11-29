@@ -93,7 +93,7 @@ class Enemy2:
         if Enemy2.image == None:
             Enemy2.image = load_image('Enemy2.png')
         self.timer = 400
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1500, 6000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1500, 8000), velocity
         self.velocityUD = 0
         self.hp = 200# 체력
         self.event_que = []

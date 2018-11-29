@@ -29,8 +29,8 @@ def enter():
     special = 2
     player = Player()
     background = Background()
-    enemies = [Enemy() for i in range(30)]
-    enemies2 = [Enemy2() for i in range(10)]
+    enemies = [Enemy() for i in range(50)]
+    enemies2 = [Enemy2() for i in range(18)]
     boss = Boss()
     game_world.add_objects(enemies, 1)
     game_world.add_objects(enemies2, 1)
