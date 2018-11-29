@@ -151,7 +151,6 @@ class Player:
         self.font = load_font('ENCR10B.TTF', 16)
         self.frame = 0
         self.hp = 1
-        self.life = 3
         self.velocityRL = 0
         self.velocityUD = 0
         self.time_x = 470
@@ -164,7 +163,9 @@ class Player:
 
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(470, 760, 'SCORE: %i' % main_state.score,(255, 255, 255))
+        self.font.draw(470, 760, 'SCORE: %i' % main_state.score, (255, 255, 255))
+        self.font.draw(10, 780, 'LIFE: %i' % main_state.life, (255, 0, 0))
+        self.font.draw(10, 760, 'SPECIAL %i' % main_state.special, (255, 0, 0))
         self.font.draw(self.time_x, self.time_y, '(Time: %3.2f)' % get_time(), (255, 255, 255))
         draw_rectangle(*self.get_bb())
 

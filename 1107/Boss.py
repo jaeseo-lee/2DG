@@ -25,54 +25,56 @@ MOVE, DIE, ATTACK = range(3)
 class IdleState:
 
     @staticmethod
-    def enter(enemy2, event):
-        enemy2.velocity -= RUN_SPEED_PPS
+    def enter(boss, event):
+        boss.velocity -= RUN_SPEED_PPS
 
         pass
     @staticmethod
-    def exit(enemy2, event):
+    def exit(boss, event):
         pass
     @staticmethod
-    def do(enemy2):
-        enemy2.y += enemy2.velocity * game_framework.frame_time
-        enemy2.timer -= 1
-        if enemy2.timer < 0 and enemy2.y <= 840:
-            Enemy2.launch(enemy2)
-            enemy2.timer = 400
+    def do(boss):
+        if boss.y > 500:
+            boss.y += boss.velocity * game_framework.frame_time
+
+        boss.timer -= 1
+        if boss.timer < 0 and boss.y <= 840:
+            Boss.launch(boss)
+            boss.timer = 400
         pass
     @staticmethod
-    def draw(enemy2):
+    def draw(boss):
         pass
 
 class MoveState:
 
     @staticmethod
-    def enter(enemy2, event):
+    def enter(boss, event):
 
         pass
     @staticmethod
-    def exit(enemy2, event):
+    def exit(boss, event):
         pass
     @staticmethod
-    def do(enemy2):
+    def do(boss):
 
         pass
     @staticmethod
-    def draw(enemy2):
+    def draw(boss):
 
         pass
 
 class AttackState:
 
     @staticmethod
-    def enter(enemy2, event):
+    def enter(boss, event):
 
         pass
     @staticmethod
-    def exit(enemy2, event):
+    def exit(boss, event):
         pass
     @staticmethod
-    def do(enemy2):
+    def do(boss):
 
         pass
     @staticmethod
@@ -85,17 +87,17 @@ next_state_table = {
     AttackState: {}
 }
 
-class Enemy2:
+class Boss:
     image = None
     enemy_bullet = None
     def __init__(self):
         velocity = 0.5
-        if Enemy2.image == None:
-            Enemy2.image = load_image('Enemy2.png')
+        if Boss.image == None:
+            Boss.image = load_image('MiddleBoss.png')
         self.timer = 400
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1500, 6000), velocity
+        self.x, self.y, self.velocity = 300, 500, velocity
         self.velocityUD = 0
-        self.hp = 200# 체력
+        self.hp = 5000 #체력
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -115,7 +117,7 @@ class Enemy2:
         game_world.add_object(enemy_bullet3, 1)
 
     def get_bb(self):
-        return self.x - 40, self.y - 40 , self.x + 40, self.y + 40
+        return self.x - 50, self.y - 40 , self.x + 50, self.y + 40
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -130,11 +132,6 @@ class Enemy2:
 
         if self.y < 20:
             game_world.remove_object(self)
-
-
-
-
-
 
 
 

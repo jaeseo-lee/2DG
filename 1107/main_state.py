@@ -7,29 +7,37 @@ import game_framework
 import game_world
 from enemy import Enemy
 from enemy2 import Enemy2
+from boss import Boss
 from player import Player
 from background import Background
 from enemy_bullet import Enemy_Bullet
 
 name = "MainState"
 score = None
+special = None
+life = None
 player = None
 grass = None
 enemy = None
 enemy2 = None
-enemy_billet = None
+boss = None
 
 def enter():
-    global player, background, enemies, score, enemies2
+    global player, background, enemies, score, enemies2, life, special, boss
     score = 0
+    life = 3
+    special = 2
     player = Player()
     background = Background()
     enemies = [Enemy() for i in range(30)]
     enemies2 = [Enemy2() for i in range(10)]
+    boss = Boss()
     game_world.add_objects(enemies, 1)
     game_world.add_objects(enemies2, 1)
     game_world.add_object(background, 0)
     game_world.add_object(player, 1)
+    game_world.add_object(boss, 1)
+
 
 def exit():
     game_world.clear()
