@@ -2,14 +2,14 @@ import game_framework
 from pico2d import *
 
 
-name = "FinalState"
+name = "FailState"
 image = None
 logo_time = 0.0
 
 
 def enter():
     global image
-    image = load_image('Finishbackground.png')
+    image = load_image('Failbackground.png')
     pass
 
 
@@ -22,7 +22,7 @@ import title_state
 def update():
     global logo_time
 
-    if(logo_time > 1.0):
+    if(logo_time > 3.0):
         logo_time = 0
         # game_framework.quit()
         game_framework.change_state(title_state)

@@ -1,7 +1,8 @@
 import random
 import json
 import os
-import final_state
+import success_state
+import fail_state
 from pico2d import *
 import game_framework
 import game_world
@@ -68,8 +69,10 @@ def handle_events():
                 game_framework.quit()
         else:
             player.handle_event(event)
-    if boss.hp <= 0 or life == 0:
-        game_framework.run(final_state)
+    if boss.hp <= 0:
+        game_framework.run(success_state)
+    if life == 0:
+        game_framework.run(fail_state)
 
 
 
