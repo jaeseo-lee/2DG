@@ -1,6 +1,8 @@
 from pico2d import *
 import game_world
 import main_state
+import game_framework
+import success_state
 import enemy
 import random
 class Bullet:
@@ -44,10 +46,11 @@ class Bullet:
         if main_state.collide(self, main_state.boss):
             game_world.remove_object(self)
             main_state.boss.hp -= self.damage
-        if main_state.boss.hp == 0:
+        if main_state.boss.hp <= 0:
             game_world.remove_object(main_state.boss)
             main_state.score += 5000
             main_state.boss.__init__()
+            game_framework.run(success_state)
 
         if self.y > 800 - 20:
             game_world.remove_object(self)

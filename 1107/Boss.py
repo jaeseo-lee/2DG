@@ -96,9 +96,9 @@ class Boss:
         if Boss.image == None:
             Boss.image = load_image('MiddleBoss.png')
         self.timer = 400
-        self.x, self.y, self.velocity = 300, 8000, velocity
+        self.x, self.y, self.velocity = 300, 600, velocity
         self.velocityUD = 0
-        self.hp = 4000 #체력
+        self.hp = 100 #체력
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -123,7 +123,7 @@ class Boss:
 
 
     def get_bb(self):
-        return self.x - 50, self.y - 40 , self.x + 50, self.y + 40
+        return self.x - 50, self.y - 40, self.x + 50, self.y + 40
 
     def add_event(self, event):
         self.event_que.insert(0, event)

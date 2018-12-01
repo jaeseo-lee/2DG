@@ -69,10 +69,10 @@ def handle_events():
                 game_framework.quit()
         else:
             player.handle_event(event)
-    if boss.hp <= 0:
-        game_framework.run(success_state)
     if life == 0:
         game_framework.run(fail_state)
+
+
 
 
 
