@@ -147,6 +147,9 @@ next_state_table = {
 class Player:
     def __init__(self):
         self.image = load_image("player1.png")
+        self.life_image1 = load_image("life.png")
+        self.life_image2 = load_image("life.png")
+        self.life_image3 = load_image("life.png")
         self.x, self.y = 300, 50
         self.font = load_font('ENCR10B.TTF', 16)
         self.frame = 0
@@ -165,8 +168,8 @@ class Player:
     def draw(self):
         self.cur_state.draw(self)
         self.font.draw(470, 780, 'SCORE: %i' % main_state.score, (255, 255, 255))
-        self.font.draw(10, 780, 'LIFE: %i' % main_state.life, (255, 0, 0))
-        self.font.draw(10, 760, 'SPECIAL %i' % main_state.special, (255, 0, 0))
+        self.font.draw(10, 780, 'LIFE: ', (255, 0, 0))
+        #self.image.draw(470, )
         #draw_rectangle(*self.get_bb())
 
     def fire_ball(self):

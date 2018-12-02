@@ -15,7 +15,7 @@ from enemy_bullet import Enemy_Bullet
 
 name = "MainState"
 score = None
-special = None
+life = None
 player = None
 grass = None
 enemy = None
@@ -23,9 +23,9 @@ enemy2 = None
 boss = None
 
 def enter():
-    global player, background, enemies, score, enemies2, special, boss
+    global player, background, enemies, score, enemies2, life, boss
     score = 0
-    special = 2
+    life = 3
     player = Player()
     background = Background()
     enemies = [Enemy() for i in range(50)]
@@ -71,6 +71,11 @@ def handle_events():
             player.handle_event(event)
     if life == 0:
         game_framework.run(fail_state)
+
+
+
+
+
 
 def update():
     for game_object in game_world.all_objects():
