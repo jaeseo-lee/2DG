@@ -148,8 +148,6 @@ class Player:
     def __init__(self):
         self.image = load_image("player1.png")
         self.life_image1 = load_image("life.png")
-        self.life_image2 = load_image("life.png")
-        self.life_image3 = load_image("life.png")
         self.x, self.y = 300, 50
         self.font = load_font('ENCR10B.TTF', 16)
         self.frame = 0
@@ -169,13 +167,24 @@ class Player:
         self.cur_state.draw(self)
         self.font.draw(470, 780, 'SCORE: %i' % main_state.score, (255, 255, 255))
         self.font.draw(10, 780, 'LIFE ', (255, 0, 0))
+        if main_state.life == 5:
+            self.life_image1.draw(12, 760)
+            self.life_image1.draw(32, 760)
+            self.life_image1.draw(52, 760)
+            self.life_image1.draw(72, 760)
+            self.life_image1.draw(92, 760)
+        if main_state.life == 4:
+            self.life_image1.draw(12, 760)
+            self.life_image1.draw(32, 760)
+            self.life_image1.draw(52, 760)
+            self.life_image1.draw(72, 760)
         if main_state.life == 3:
             self.life_image1.draw(12, 760)
-            self.life_image2.draw(32, 760)
-            self.life_image3.draw(52, 760)
+            self.life_image1.draw(32, 760)
+            self.life_image1.draw(52, 760)
         if main_state.life == 2:
             self.life_image1.draw(12, 760)
-            self.life_image2.draw(32, 760)
+            self.life_image1.draw(32, 760)
         if main_state.life == 1:
             self.life_image1.draw(12, 760)
 

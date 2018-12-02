@@ -3,7 +3,7 @@ import game_world
 import random
 import math
 import game_framework
-from enemy_bullet import Enemy_Bullet
+import main_state
 
 PIXEL_PER_METER = (10.0 / 4)
 RUN_SPEED_KMPH = 20.0
@@ -17,8 +17,6 @@ ROTATE_PER_TIME = PIXEL_PER_METER * 3
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
-
-MOVE, DIE, ATTACK = range(3)
 
 class IdleState:
 
@@ -35,23 +33,24 @@ class IdleState:
         enemy.y += enemy.velocity * game_framework.frame_time
         enemy.timer -= 1
         if enemy.timer < 0 and enemy.y <= 840:
-            Enemy.launch(enemy)
             enemy.timer = 300
         pass
     @staticmethod
     def draw(enemy):
         pass
+next_state_table = {
+    IdleState: {},
 
-class Enemy:
+}
+class Life_item:
     image = None
     def __init__(self):
         velocity = 0.7
-        if Enemy.image == None:
-            Enemy.image = load_image('Enemy1.png')
+        if Life_item.image == None:
+            Life_item.image = load_image('life_up.png')
         self.timer = 500
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(1200, 10000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550),  random.randint(3000, 7000), velocity
         self.velocityUD = 0
-        self.hp = 100
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
@@ -59,14 +58,10 @@ class Enemy:
     def draw(self):
         self.cur_state.draw(self)
         self.image.draw(self.x, self.y)
-        #draw_rectangle(*self.get_bb())
-
-    def launch(self):
-        enemy_bullet1 = Enemy_Bullet(self.x, self.y-45)
-        game_world.add_object(enemy_bullet1, 1)
+        draw_rectangle(*self.get_bb())
 
     def get_bb(self):
-        return self.x - 20, self.y - 40, self.x + 20, self.y + 40
+        return self.x - 15, self.y - 20, self.x + 15, self.y + 20
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -79,5 +74,8 @@ class Enemy:
             self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
 
-        if self.y < 20:
+        if self.y < 10:
             game_world.remove_object(self)
+        if main_state.collide(self, main_state.player):
+            game_world.remove_object(self)
+            main_state.life += 1

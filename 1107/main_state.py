@@ -11,7 +11,7 @@ from enemy2 import Enemy2
 from boss import Boss
 from player import Player
 from background import Background
-from enemy_bullet import Enemy_Bullet
+from life_item import Life_item
 
 name = "MainState"
 score = None
@@ -21,24 +21,23 @@ grass = None
 enemy = None
 enemy2 = None
 boss = None
-
+life_item = None
 def enter():
-    global player, background, enemies, score, enemies2, life, boss
+    global player, background, enemies, score, enemies2, life, boss, life_items
     score = 0
     life = 3
+    life_items = [Life_item() for i in range(2)]
     player = Player()
     background = Background()
     enemies = [Enemy() for i in range(50)]
-    enemies2 = [Enemy2() for i in range(18)]
+    enemies2 = [Enemy2() for i in range(20)]
     boss = Boss()
     game_world.add_objects(enemies, 1)
     game_world.add_objects(enemies2, 1)
     game_world.add_object(background, 0)
     game_world.add_object(player, 1)
     game_world.add_object(boss, 1)
-
-
-
+    game_world.add_objects(life_items, 1)
 
 def exit():
     game_world.clear()
@@ -78,6 +77,7 @@ def update():
 
 
 def draw():
+    clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
     update_canvas()
