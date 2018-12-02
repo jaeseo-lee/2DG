@@ -96,9 +96,9 @@ class Boss:
         if Boss.image == None:
             Boss.image = load_image('MiddleBoss.png')
         self.timer = 400
-        self.x, self.y, self.velocity = 300, 600, velocity
+        self.x, self.y, self.velocity = 300, 6000, velocity
         self.velocityUD = 0
-        self.hp = 100 #체력
+        self.hp = 4000 #체력
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
