@@ -1,7 +1,4 @@
 from pico2d import *
-import main_state
-from boss import Boss
-
 
 class Background:
     def __init__(self):

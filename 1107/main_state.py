@@ -40,6 +40,8 @@ def enter():
     game_world.add_object(boss, 1)
 
 
+
+
 def exit():
     game_world.clear()
 
@@ -82,9 +84,7 @@ def update():
         game_object.update()
 
 
-
 def draw():
-    clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
     update_canvas()

@@ -1,14 +1,12 @@
 import game_framework
+import game_world
+from background import Background
 from pico2d import *
 
 name = "FinalState"
 image = None
 logo_time = 0.0
 
-def __init__(self):
-    self.bgm = load_music('DeathfireGrasp.wav')
-    self.bgm.stop()
-    pass
 
 def enter():
     global image
@@ -16,6 +14,7 @@ def enter():
     pass
 
 def exit():
+    game_world.clear()
     global image
     del(image)
     pass

@@ -1,6 +1,6 @@
 import game_framework
 from pico2d import *
-
+import game_world
 
 name = "FailState"
 image = None
@@ -14,6 +14,7 @@ def enter():
 
 
 def exit():
+    game_world.clear()
     global image
     del(image)
     pass
