@@ -168,8 +168,17 @@ class Player:
     def draw(self):
         self.cur_state.draw(self)
         self.font.draw(470, 780, 'SCORE: %i' % main_state.score, (255, 255, 255))
-        self.font.draw(10, 780, 'LIFE: ', (255, 0, 0))
-        #self.image.draw(470, )
+        self.font.draw(10, 780, 'LIFE ', (255, 0, 0))
+        if main_state.life == 3:
+            self.life_image1.draw(12, 760)
+            self.life_image2.draw(32, 760)
+            self.life_image3.draw(52, 760)
+        if main_state.life == 2:
+            self.life_image1.draw(12, 760)
+            self.life_image2.draw(32, 760)
+        if main_state.life == 1:
+            self.life_image1.draw(12, 760)
+
         #draw_rectangle(*self.get_bb())
 
     def fire_ball(self):
@@ -186,6 +195,7 @@ class Player:
             self.cur_state.exit(self, event)
             self.cur_state = next_state_table[self.cur_state][event]
             self.cur_state.enter(self, event)
+
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:

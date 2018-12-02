@@ -72,11 +72,6 @@ def handle_events():
     if life == 0:
         game_framework.run(fail_state)
 
-
-
-
-
-
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
