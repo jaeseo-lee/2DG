@@ -45,11 +45,11 @@ next_state_table = {
 class Life_item:
     image = None
     def __init__(self):
-        velocity = 0.7
+        velocity = 0.5
         if Life_item.image == None:
             Life_item.image = load_image('life_up.png')
         self.timer = 500
-        self.x, self.y, self.velocity = random.randint(50, 550),  random.randint(3000, 7000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(3000, 7000), velocity
         self.velocityUD = 0
         self.event_que = []
         self.cur_state = IdleState
@@ -58,7 +58,7 @@ class Life_item:
     def draw(self):
         self.cur_state.draw(self)
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 15, self.y - 20, self.x + 15, self.y + 20
