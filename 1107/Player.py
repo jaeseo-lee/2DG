@@ -167,7 +167,7 @@ class Player:
         self.font.draw(470, 780, 'SCORE: %i' % main_state.score, (255, 255, 255))
         self.font.draw(10, 780, 'LIFE: %i' % main_state.life, (255, 0, 0))
         self.font.draw(10, 760, 'SPECIAL %i' % main_state.special, (255, 0, 0))
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def fire_ball(self):
         bullet = Bullet(self.x, self.y)

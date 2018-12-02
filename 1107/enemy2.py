@@ -104,7 +104,7 @@ class Enemy2:
     def draw(self):
         self.cur_state.draw(self)
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def launch(self):
         enemy_bullet2 = Enemy_Bullet2(self.x, self.y-45)

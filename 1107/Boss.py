@@ -107,7 +107,7 @@ class Boss:
     def draw(self):
         self.cur_state.draw(self)
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def launch(self):
         boss_bullet2 = Boss_Bullet2(self.x, self.y-45)

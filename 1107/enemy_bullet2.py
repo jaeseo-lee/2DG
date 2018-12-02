@@ -16,7 +16,7 @@ class Enemy_Bullet2:
 
     def draw(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 12, self.y - 10, self.x + 12, self.y + 10
@@ -51,7 +51,7 @@ class Enemy_Bullet3:
 
     def draw(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 12, self.y - 10, self.x + 12, self.y + 10
@@ -84,7 +84,7 @@ class Enemy_Bullet4:
 
     def draw(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x - 12, self.y - 10, self.x + 12, self.y + 10
