@@ -1,8 +1,6 @@
 from pico2d import *
 import game_world
-import random
 import main_state
-import player
 
 class Enemy_Bullet:
     image = None

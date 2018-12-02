@@ -23,7 +23,7 @@ enemy2 = None
 boss = None
 life_item = None
 def enter():
-    global player, background, enemies, score, enemies2, life, boss, life_items
+    global player, background, enemies, score, enemies2, life, boss, life_items, bgm
     score = 0
     life = 3
     life_items = [Life_item() for i in range(2)]
@@ -39,13 +39,18 @@ def enter():
     game_world.add_object(boss, 1)
     game_world.add_objects(life_items, 1)
 
+    bgm = load_music('06 - stage 5.mp3')
+    bgm.set_volume(64)
+    bgm.repeat_play()
+
+
 def exit():
     game_world.clear()
 
 def pause():
     pass
 
-def resume():
+def resume():[;l][pl]
     pass
 
 def collide(a, b):

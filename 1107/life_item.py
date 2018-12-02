@@ -49,7 +49,7 @@ class Life_item:
         if Life_item.image == None:
             Life_item.image = load_image('life_up.png')
         self.timer = 500
-        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(3000, 7000), velocity
+        self.x, self.y, self.velocity = random.randint(50, 550), random.randint(2000, 7000), velocity
         self.velocityUD = 0
         self.event_que = []
         self.cur_state = IdleState

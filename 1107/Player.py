@@ -146,6 +146,7 @@ next_state_table = {
 
 class Player:
     def __init__(self):
+
         self.image = load_image("player1.png")
         self.life_image1 = load_image("life.png")
         self.x, self.y = 300, 50
