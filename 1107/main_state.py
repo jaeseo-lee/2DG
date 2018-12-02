@@ -50,7 +50,7 @@ def exit():
 def pause():
     pass
 
-def resume():[;l][pl]
+def resume():
     pass
 
 def collide(a, b):
